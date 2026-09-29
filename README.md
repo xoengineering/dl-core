@@ -28,7 +28,8 @@ module Example
 
       def target_name = 'EXAMPLE_ID_OR_URL'
 
-      def env_prefix = 'EXAMPLE' # EXAMPLE_DOWNLOAD_PATH, EXAMPLE_RATE_LIMIT
+      # EXAMPLE_DOWNLOAD_PATH, EXAMPLE_RATE_LIMIT
+      def env_prefix = 'EXAMPLE'
 
       def default_path = File.join(Dir.home, 'Downloads', 'Example_Papers')
 
