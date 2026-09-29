@@ -48,5 +48,7 @@ Gem::Specification.new do |spec|
   end
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'http', '~> 6.0'
+  spec.add_dependency 'http',     '~> 6.0'
+  spec.add_dependency 'ostruct',  '~> 0.6' # stringex requires it; no longer a default gem since Ruby 4.0
+  spec.add_dependency 'stringex', '~> 2.8'
 end
