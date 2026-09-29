@@ -10,6 +10,7 @@ Shared foundation for the `<site>-dl` gems that build offline archives: [arxiv-d
 | `DL::Core::Error`, `DL::Core::HTTPError` | Base error for every gem; `HTTPError` for non-success responses (`status`, `url`)               |
 | `DL::Core::Author`                     | `name` and `affiliations`                                                                         |
 | `DL::Core::Slug`                       | Title → URL-safe slug, truncated at a word boundary                                               |
+| `DL::Core::PaperFolder`                | A paper's folder: flat while one version is archived, `v<N>/` folders once there are several; override `moved_into` to fix up files moved one level deeper |
 | `DL::Core::Sidecar::YAML`, `JSON`      | `metadata.yaml` / `metadata.json` from any metadata `Data` object                                 |
 | `DL::Core::Sidecar::Markdown`          | `metadata.md`: YAML frontmatter from the metadata, plus a body each gem writes                    |
 | `DL::Core::CLI`                        | The shared command line: targets as args or `--input FILE\|-`, `-p`, `--rate-limit`, `-v`, `-q`, per-target errors, exit 1 on any failure |
