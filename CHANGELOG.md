@@ -1,3 +1,7 @@
+## [0.3.0]
+
+- `DL::Core::CLI#default_rate_limit`: the seconds between requests when neither `--rate-limit` nor `<PREFIX>_RATE_LIMIT` is set. It defaults to 3. A gem whose source allows fewer requests overrides it (osf-dl uses 36).
+
 ## [0.2.0]
 
 - `DL::Core::PaperFolder`, extracted from arxiv-dl and hal-dl: a paper's folder is flat while one version (v1) is archived and uses `v<N>/` folders once there are several; `unflatten!` moves a flat version into its `v<N>/` folder and calls `moved_into(destination)`, which a gem can override (arxiv-dl rewrites `html/` links there).

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    dl-core (0.2.0)
+    dl-core (0.3.0)
       http (~> 6.0)
       ostruct (~> 0.6)
       stringex (~> 2.8)
@@ -134,7 +134,7 @@ CHECKSUMS
   bundler (4.0.21) sha256=7cbf5499b426076aa16c8d28a59e4c2c3aad5a438402abcd961f0119f29f1dd0
   crack (1.0.1) sha256=ff4a10390cd31d66440b7524eb1841874db86201d5b70032028553130b6d4c7e
   diff-lcs (1.6.2) sha256=9ae0d2cba7d4df3075fe8cd8602a8604993efc0dfa934cff568969efb1909962
-  dl-core (0.2.0)
+  dl-core (0.3.0)
   domain_name (0.6.20260921) sha256=b335949f69fae603fed0ae88c4e09a51e9d8e3ceef4c73a6cfde44eb5c8dee6d
   erb (6.0.7) sha256=c5ca6dc25b0ef974a44dc8f59fe847577122483b1968a38dec305c60bf91ee92
   hashdiff (1.2.1) sha256=9c079dbc513dfc8833ab59c0c2d8f230fa28499cc5efb4b8dd276cf931457cd1
