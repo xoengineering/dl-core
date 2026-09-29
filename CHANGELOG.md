@@ -1,4 +1,4 @@
-## [Unreleased]
+## [0.1.0]
 
 First version, extracted from arxiv-dl 0.3.0 and jstor-dl 0.1.0.
 
