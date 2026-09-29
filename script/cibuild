@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+# script/cibuild: Setup environment for CI to run tests. This is primarily
+#                 designed to run on the continuous integration server.
+
+require 'fileutils'
+include FileUtils
+
+APP_ROOT = Pathname.new File.expand_path('..', __dir__)
+
+def system! *args
+  system(*args) || abort("\n==> Command #{args} failed")
+end
+
+chdir APP_ROOT do
+  puts "==> Tests started at: #{Time.now.getlocal.strftime('%H:%M:%S')}"
+
+  system! 'bundle exec rspec'
+  system! 'bundle exec rubocop'
+end

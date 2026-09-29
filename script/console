@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+# script/console: Launch an interactive console for the gem.
+
+require 'fileutils'
+include FileUtils
+
+APP_ROOT = Pathname.new File.expand_path('..', __dir__)
+
+def system! *args
+  system(*args) || abort("\n==> Command #{args} failed")
+end
+
+chdir APP_ROOT do
+  system! 'bin/console'
+end

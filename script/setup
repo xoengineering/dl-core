@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+# script/setup: Set up gem for the first time after cloning.
+
+require 'fileutils'
+include FileUtils
+
+APP_ROOT = Pathname.new File.expand_path('..', __dir__)
+
+def system! *args
+  system(*args) || abort("\n==> Command #{args} failed")
+end
+
+chdir APP_ROOT do
+  puts '==> Installing dependencies'
+  system! 'gem install bundler --conservative'
+  system('bundle check') || system!('bundle install')
+
+  puts '==> Gem is now setup!'
+  puts '==> Next step is:'
+  puts '    ./script/test'
+end

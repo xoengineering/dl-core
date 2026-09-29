@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# script/bootstrap: Resolve all dependencies that the gem requires to run.
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+echo '==> Installing bundler…'
+gem install bundler --conservative
+
+echo '==> Installing gem dependencies…'
+bundle check >/dev/null 2>&1 || bundle install
+
+echo '==> All done! Your system is now bootstrapped.'
+echo '==> Next up: ./script/setup'
