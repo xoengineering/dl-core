@@ -12,6 +12,8 @@ module DL
     #   user_agent                               for requests, naming the gem
     #   identifier_for(target)                   parses one target; raises an Error subclass if invalid
     #   archive_for(identifier, root:, client:)  an object whose #run archives it and returns its folder
+    #
+    # and can override default_rate_limit when its source allows fewer requests.
     class CLI
       def initialize argv, stderr: $stderr, stdin: $stdin, stdout: $stdout
         @argv   = argv
@@ -49,6 +51,10 @@ module DL
 
       def client_for(rate_limit:, log:) = Client.new(user_agent:, rate_limit:, log:)
 
+      # seconds between requests when neither --rate-limit nor <PREFIX>_RATE_LIMIT is set.
+      # A gem whose source allows fewer requests overrides this.
+      def default_rate_limit = Client::DEFAULT_RATE_LIMIT
+
       private
 
       def usage
@@ -72,7 +78,7 @@ module DL
         end
 
         options[:path]       ||= ENV["#{env_prefix}_DOWNLOAD_PATH"] || default_path
-        options[:rate_limit] ||= (ENV["#{env_prefix}_RATE_LIMIT"] || Client::DEFAULT_RATE_LIMIT).to_i
+        options[:rate_limit] ||= (ENV["#{env_prefix}_RATE_LIMIT"] || default_rate_limit).to_i
         options
       end
 

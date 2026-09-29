@@ -133,6 +133,44 @@ RSpec.describe DL::Core::CLI do
       end
     end
 
+    context 'with the rate limit' do
+      # records the rate limit each run's client is made with
+      let(:cli_class) do
+        Class.new(ExampleDL::CLI) do
+          attr_reader :rate_limit_used
+
+          def client_for rate_limit:, log:
+            @rate_limit_used = rate_limit
+            super
+          end
+        end
+      end
+
+      def rate_limit_for arguments, cli_class: self.cli_class
+        Dir.mktmpdir do |root|
+          cli = cli_class.new(['-p', root, *arguments, '42'], stderr:, stdout:)
+          cli.run
+          cli.rate_limit_used
+        end
+      end
+
+      it "uses dl-core's 3-second default when nothing sets it" do
+        expect(rate_limit_for([])).to eq 3
+      end
+
+      it "uses the gem's default_rate_limit when the gem defines one" do
+        slower = Class.new(cli_class) { def default_rate_limit = 36 }
+
+        expect(rate_limit_for([], cli_class: slower)).to eq 36
+      end
+
+      it 'uses --rate-limit over the default' do
+        slower = Class.new(cli_class) { def default_rate_limit = 36 }
+
+        expect(rate_limit_for(['--rate-limit', '5'], cli_class: slower)).to eq 5
+      end
+    end
+
     context 'with ENV <PREFIX>_DOWNLOAD_PATH and <PREFIX>_RATE_LIMIT' do
       it 'uses ENV when the flags are not given; flags win over ENV' do
         Dir.mktmpdir do |env_root|
