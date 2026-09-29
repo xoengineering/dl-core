@@ -47,4 +47,6 @@ Gem::Specification.new do |spec|
     end
   end
   spec.require_paths = ['lib']
+
+  spec.add_dependency 'http', '~> 6.0'
 end
